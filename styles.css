@@ -438,18 +438,25 @@ body.music-on .music-bars i {
   inset: 0;
 }
 
-.hero__media img {
+.hero__media video {
   width: 100%;
   height: 100%;
   object-fit: cover;
   object-position: 53% center;
   transform: scale(1.05);
-  filter: saturate(0.88) contrast(1.08) brightness(0.76);
+  filter: saturate(0.95) contrast(1.06) brightness(0.88);
+  opacity: 0;
+  transition: opacity 1.35s var(--ease), transform 1.2s var(--ease);
+}
+
+body.entered .hero__media video,
+.hero__media video.is-ready {
+  opacity: 1;
 }
 
 .hero__veil {
   background:
-    linear-gradient(180deg, rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.12) 35%, #050403 94%),
+    linear-gradient(180deg, rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35) 35%, #050403 94%),
     radial-gradient(circle at 50% 72%, rgba(215, 169, 79, 0.18), transparent 21rem);
 }
 
@@ -872,7 +879,7 @@ body.music-on .music-bars i {
     padding-left: clamp(2rem, 7vw, 7rem);
   }
 
-  .hero__media img {
+  .hero__media video {
     object-position: center;
   }
 

@@ -261,6 +261,30 @@ function setupMusic() {
 
 const music = setupMusic();
 
+function setupHeroVideo() {
+  const video = $("#hero-video");
+  if (!video) return;
+
+  const markReady = () => video.classList.add("is-ready");
+  if (video.readyState >= 2) markReady();
+  video.addEventListener("loadeddata", markReady, { once: true });
+  video.addEventListener("canplay", markReady, { once: true });
+
+  const play = () => {
+    video.muted = true;
+    video.play().catch(() => {});
+  };
+
+  play();
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) play();
+  });
+  window.addEventListener("touchstart", play, { once: true, passive: true });
+  window.addEventListener("pointerdown", play, { once: true, passive: true });
+}
+
+setupHeroVideo();
+
 function setupIntro() {
   const enter = $("#enter-btn");
   const intro = $("#intro");
@@ -515,9 +539,10 @@ setupRipples();
 window.addEventListener(
   "scroll",
   () => {
-    const heroImage = $(".hero__media img");
+    const heroMedia = $(".hero__media video");
+    if (!heroMedia) return;
     const y = window.scrollY * 0.08;
-    heroImage.style.transform = `scale(1.05) translate3d(0, ${y}px, 0)`;
+    heroMedia.style.transform = `scale(1.05) translate3d(0, ${y}px, 0)`;
   },
   { passive: true }
 );

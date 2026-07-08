@@ -12,7 +12,7 @@
     <meta property="og:image" content="portrait.jpg" />
     <meta property="og:site_name" content="Royal Birthday Invitation" />
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preload" href="portrait.jpg" as="image" />
+    <link rel="preload" href="assets/hero.mp4" as="video" type="video/mp4" />
     <link rel="preload" href="chess_piece_king.glb" as="fetch" crossorigin />
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -53,7 +53,9 @@
 
       <section id="hero" class="hero section">
         <div class="hero__media" aria-hidden="true">
-          <img src="portrait.jpg" alt="" />
+          <video id="hero-video" autoplay muted loop playsinline preload="metadata" poster="portrait.jpg">
+            <source src="assets/hero.mp4" type="video/mp4" />
+          </video>
         </div>
         <div class="hero__veil" aria-hidden="true"></div>
         <div class="hero__content reveal">
