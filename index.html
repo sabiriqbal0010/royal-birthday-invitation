@@ -1,0 +1,177 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>Royal Birthday Celebration</title>
+    <meta name="description" content="An exclusive royal birthday celebration invitation." />
+    <meta name="theme-color" content="#050403" />
+    <meta property="og:title" content="Royal Birthday Celebration" />
+    <meta property="og:description" content="A royal celebration awaits. Tap to open the invitation." />
+    <meta property="og:type" content="website" />
+    <meta property="og:image" content="portrait.jpg" />
+    <meta property="og:site_name" content="Royal Birthday Invitation" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preload" href="portrait.jpg" as="image" />
+    <link rel="preload" href="chess_piece_king.glb" as="fetch" crossorigin />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="noise" aria-hidden="true"></div>
+    <div class="cursor-light" aria-hidden="true"></div>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <section id="intro" class="intro" aria-label="Opening cinematic">
+      <div class="intro__aurora" aria-hidden="true"></div>
+      <div id="king-stage" class="king-stage">
+        <div class="king-fallback" aria-hidden="true">
+          <span class="king-fallback__crown">♛</span>
+          <span class="king-fallback__stem"></span>
+          <span class="king-fallback__base"></span>
+        </div>
+      </div>
+      <div class="intro__copy">
+        <img class="royal-logo royal-logo--intro" src="marwan-mrad-logo-transparent.png" alt="Marwan Mrad logo" />
+        <p class="eyebrow">Private Royal Invitation</p>
+        <h1>A Royal Celebration Awaits</h1>
+        <button id="enter-btn" class="glass-button" type="button">
+          <span>Tap to Enter</span>
+        </button>
+      </div>
+    </section>
+
+    <main id="site" class="site" aria-live="polite">
+      <nav class="topbar" aria-label="Invitation controls">
+        <a class="brand" href="#hero" aria-label="Royal Birthday Invitation">
+          <span class="brand__mark">♛</span>
+          <span>Royal Birthday</span>
+        </a>
+        <button id="music-toggle" class="icon-button" type="button" aria-label="Play music">
+          <span class="music-bars" aria-hidden="true"><i></i><i></i><i></i></span>
+        </button>
+      </nav>
+
+      <section id="hero" class="hero section">
+        <div class="hero__media" aria-hidden="true">
+          <img src="portrait.jpg" alt="" />
+        </div>
+        <div class="hero__veil" aria-hidden="true"></div>
+        <div class="hero__content reveal">
+          <p class="eyebrow">Royal Birthday Celebration</p>
+          <h2 id="celebrant-name">Birthday Person Name</h2>
+          <p id="birthday-line" class="hero__subtitle">Age Birthday Celebration</p>
+          <div class="hero__crest" aria-hidden="true">♛</div>
+        </div>
+        <a class="scroll-indicator" href="#invitation" aria-label="Scroll to invitation">
+          <span></span>
+        </a>
+      </section>
+
+      <section id="invitation" class="section invitation">
+        <div class="section-frame reveal">
+          <p class="eyebrow">By Royal Request</p>
+          <h2>You are invited to an evening of prestige, music, and golden memories.</h2>
+          <p id="invitation-message">
+            Join us for an unforgettable birthday celebration crafted with elegance, warmth, and royal spirit.
+          </p>
+        </div>
+      </section>
+
+      <section class="section seal-section" aria-labelledby="seal-title">
+        <div class="seal-copy reveal">
+          <img class="royal-logo royal-logo--seal" src="marwan-mrad-logo-transparent.png" alt="Marwan Mrad logo" loading="lazy" />
+          <p class="eyebrow">Scratch the Royal Seal</p>
+          <h2 id="seal-title">Reveal the celebration details</h2>
+        </div>
+        <div class="seal-card reveal">
+          <div id="scratch-area" class="scratch-area">
+            <div class="details-panel">
+              <div>
+                <span>Date</span>
+                <strong id="detail-date">Birthday Date</strong>
+              </div>
+              <div>
+                <span>Time</span>
+                <strong id="detail-time">Birthday Time</strong>
+              </div>
+              <div>
+                <span>Venue</span>
+                <strong id="detail-venue">Venue Name</strong>
+              </div>
+              <div>
+                <span>Dress Code</span>
+                <strong id="detail-dress">Optional</strong>
+              </div>
+            </div>
+            <canvas id="scratch-canvas" aria-label="Scratch the royal seal to reveal event details"></canvas>
+            <div id="seal-burst" class="seal-burst" aria-hidden="true"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section countdown-section">
+        <div class="royal-frame reveal">
+          <p class="eyebrow">The Countdown</p>
+          <h2>Until the royal hour arrives</h2>
+          <div class="countdown" aria-label="Countdown timer">
+            <div><strong id="days">00</strong><span>Days</span></div>
+            <div><strong id="hours">00</strong><span>Hours</span></div>
+            <div><strong id="minutes">00</strong><span>Minutes</span></div>
+            <div><strong id="seconds">00</strong><span>Seconds</span></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section moments">
+        <div class="section-heading reveal">
+          <p class="eyebrow">Special Moments</p>
+          <h2>A life of signature chapters</h2>
+        </div>
+        <div id="timeline" class="timeline"></div>
+      </section>
+
+      <section class="section venue">
+        <div class="venue-card reveal">
+          <p class="eyebrow">The Venue</p>
+          <h2 id="venue-name">Venue Name</h2>
+          <p id="venue-address">Venue Address</p>
+          <div class="venue-meta">
+            <span id="venue-date">Birthday Date</span>
+            <span id="venue-time">Birthday Time</span>
+          </div>
+          <a id="maps-link" class="gold-button" href="#" target="_blank" rel="noopener">View Location</a>
+        </div>
+      </section>
+
+      <section class="section rsvp">
+        <div class="rsvp-card reveal">
+          <p class="eyebrow">RSVP</p>
+          <h2>Confirm your royal attendance</h2>
+          <div class="rsvp-actions">
+            <a id="confirm-link" class="gold-button" href="#">Confirm Attendance</a>
+            <a id="whatsapp-link" class="glass-button glass-button--small" href="#" target="_blank" rel="noopener">WhatsApp RSVP</a>
+            <a id="call-link" class="glass-button glass-button--small" href="#">Call Now</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="gold-divider" aria-hidden="true"></div>
+      <p>With gratitude and royal affection, thank you for sharing this celebration.</p>
+      <small>© <span id="year"></span> Royal Birthday Celebration</small>
+    </footer>
+
+    <audio id="bg-music" preload="auto" loop src="royal-birthday-music.mp3"></audio>
+
+    <script type="importmap">
+      {
+        "imports": {
+          "three": "https://unpkg.com/three@0.165.0/build/three.module.js",
+          "three/addons/": "https://unpkg.com/three@0.165.0/examples/jsm/"
+        }
+      }
+    </script>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
