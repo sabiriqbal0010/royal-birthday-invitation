@@ -3,17 +3,19 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <title>Royal Birthday Celebration</title>
-    <meta name="description" content="An exclusive royal birthday celebration invitation." />
+    <title>Marwan Mrad | Celebration</title>
+    <meta name="description" content="An invitation to celebrate Marwan Mrad at Brass Monkey - Bluewaters." />
     <meta name="theme-color" content="#050403" />
-    <meta property="og:title" content="Royal Birthday Celebration" />
-    <meta property="og:description" content="A royal celebration awaits. Tap to open the invitation." />
+    <meta property="og:title" content="Marwan Mrad | Celebration" />
+    <meta property="og:description" content="25 July 2026, 4:30 PM at Brass Monkey - Bluewaters." />
     <meta property="og:type" content="website" />
     <meta property="og:image" content="portrait.jpg" />
     <meta property="og:site_name" content="Royal Birthday Invitation" />
     <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,600&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet" />
     <link rel="preload" href="assets/hero.mp4" as="video" type="video/mp4" />
-    <link rel="preload" href="chess_piece_king.glb" as="fetch" crossorigin />
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
@@ -23,13 +25,9 @@
 
     <section id="intro" class="intro" aria-label="Opening cinematic">
       <div class="intro__aurora" aria-hidden="true"></div>
-      <div id="king-stage" class="king-stage">
-        <div class="king-fallback" aria-hidden="true">
-          <span class="king-fallback__crown">♛</span>
-          <span class="king-fallback__stem"></span>
-          <span class="king-fallback__base"></span>
-        </div>
-      </div>
+      <video id="intro-logo-video" class="intro-launch-video" muted playsinline preload="auto" aria-label="Marwan Mrad logo animation">
+        <source src="assets/marwan-mrad-logo-animation.mp4" type="video/mp4" />
+      </video>
       <div class="intro__copy">
         <img class="royal-logo royal-logo--intro" src="marwan-mrad-logo-transparent.png" alt="Marwan Mrad logo" />
         <p class="eyebrow">Private Royal Invitation</p>
@@ -43,7 +41,6 @@
     <main id="site" class="site" aria-live="polite">
       <nav class="topbar" aria-label="Invitation controls">
         <a class="brand" href="#hero" aria-label="Royal Birthday Invitation">
-          <span class="brand__mark">♛</span>
           <span>Royal Birthday</span>
         </a>
         <button id="music-toggle" class="icon-button" type="button" aria-label="Play music">
@@ -60,9 +57,8 @@
         <div class="hero__veil" aria-hidden="true"></div>
         <div class="hero__content reveal">
           <p class="eyebrow">Royal Birthday Celebration</p>
-          <h2 id="celebrant-name">Birthday Person Name</h2>
-          <p id="birthday-line" class="hero__subtitle">Age Birthday Celebration</p>
-          <div class="hero__crest" aria-hidden="true">♛</div>
+          <h2 id="celebrant-name">Marwan Mrad</h2>
+          <p id="birthday-line" class="hero__subtitle">An Evening of Celebration</p>
         </div>
         <a class="scroll-indicator" href="#invitation" aria-label="Scroll to invitation">
           <span></span>
@@ -74,7 +70,7 @@
           <p class="eyebrow">By Royal Request</p>
           <h2>You are invited to an evening of prestige, music, and golden memories.</h2>
           <p id="invitation-message">
-            Join us for an unforgettable birthday celebration crafted with elegance, warmth, and royal spirit.
+            With great pleasure, you are invited to join Marwan Mrad for an afternoon of distinction, fine moments, and celebration.
           </p>
         </div>
       </section>
@@ -90,19 +86,15 @@
             <div class="details-panel">
               <div>
                 <span>Date</span>
-                <strong id="detail-date">Birthday Date</strong>
+                <strong id="detail-date">25 July 2026</strong>
               </div>
               <div>
                 <span>Time</span>
-                <strong id="detail-time">Birthday Time</strong>
+                <strong id="detail-time">4:30 PM</strong>
               </div>
               <div>
                 <span>Venue</span>
-                <strong id="detail-venue">Venue Name</strong>
-              </div>
-              <div>
-                <span>Dress Code</span>
-                <strong id="detail-dress">Optional</strong>
+                <strong id="detail-venue">Brass Monkey - Bluewaters</strong>
               </div>
             </div>
             <canvas id="scratch-canvas" aria-label="Scratch the royal seal to reveal event details"></canvas>
@@ -135,11 +127,11 @@
       <section class="section venue">
         <div class="venue-card reveal">
           <p class="eyebrow">The Venue</p>
-          <h2 id="venue-name">Venue Name</h2>
-          <p id="venue-address">Venue Address</p>
+          <h2 id="venue-name">Brass Monkey - Bluewaters</h2>
+          <p id="venue-address">Bluewaters Island, Dubai, UAE</p>
           <div class="venue-meta">
-            <span id="venue-date">Birthday Date</span>
-            <span id="venue-time">Birthday Time</span>
+            <span id="venue-date">25 July 2026</span>
+            <span id="venue-time">4:30 PM</span>
           </div>
           <a id="maps-link" class="gold-button" href="#" target="_blank" rel="noopener">View Location</a>
         </div>

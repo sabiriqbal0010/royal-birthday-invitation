@@ -1,29 +1,28 @@
 const eventDetails = {
-  celebrant: "Birthday Person Name",
-  age: "Age",
-  dateLabel: "Birthday Date",
-  timeLabel: "Birthday Time",
-  venue: "Venue Name",
-  address: "Venue Address",
-  mapsUrl: "https://maps.google.com",
+  celebrant: "Marwan Mrad",
+  heroSubtitle: "An Evening of Celebration",
+  dateLabel: "25 July 2026",
+  timeLabel: "4:30 PM",
+  venue: "Brass Monkey - Bluewaters",
+  address: "Bluewaters Island, Dubai, UAE",
+  mapsUrl: "https://maps.app.goo.gl/GDhjytQzqWY87NHf7",
   phone: "+000000000000",
   whatsappUrl: "https://wa.me/000000000000",
-  dressCode: "Royal Black & Gold",
   invitationMessage:
-    "Join us for an unforgettable birthday celebration crafted with elegance, warmth, and royal spirit.",
-  targetDate: "2026-12-31T20:00:00",
+    "With great pleasure, you are invited to join Marwan Mrad for an afternoon of distinction, fine moments, and celebration. Your presence will make this occasion truly memorable.",
+  targetDate: "2026-07-25T16:30:00+04:00",
   moments: [
     {
-      title: "The Royal Arrival",
-      text: "A cinematic welcome for family, friends, and honored guests."
+      title: "A Life of Vision",
+      text: "Celebrating a journey shaped by ambition, generosity, and an unmistakable sense of style."
     },
     {
-      title: "Golden Toast",
-      text: "A signature birthday moment surrounded by music, light, and celebration."
+      title: "The Golden Hour",
+      text: "An afternoon reserved for heartfelt conversations, music, and the people who matter most."
     },
     {
-      title: "Number One Night",
-      text: "An evening designed for joy, prestige, and memories that last."
+      title: "A Signature Celebration",
+      text: "One unforgettable occasion at Brass Monkey, created for exceptional memories and good company."
     }
   ]
 };
@@ -36,12 +35,11 @@ document.body.classList.add("is-locked");
 function applyEventDetails() {
   document.title = `${eventDetails.celebrant} | Royal Birthday Celebration`;
   $("#celebrant-name").textContent = eventDetails.celebrant;
-  $("#birthday-line").textContent = `${eventDetails.age} Birthday Celebration`;
+  $("#birthday-line").textContent = eventDetails.heroSubtitle;
   $("#invitation-message").textContent = eventDetails.invitationMessage;
   $("#detail-date").textContent = eventDetails.dateLabel;
   $("#detail-time").textContent = eventDetails.timeLabel;
   $("#detail-venue").textContent = eventDetails.venue;
-  $("#detail-dress").textContent = eventDetails.dressCode;
   $("#venue-name").textContent = eventDetails.venue;
   $("#venue-address").textContent = eventDetails.address;
   $("#venue-date").textContent = eventDetails.dateLabel;
@@ -137,85 +135,6 @@ function setupCursorLight() {
 
 setupCursorLight();
 
-let kingObject;
-let kingRenderer;
-let kingScene;
-let kingCamera;
-
-async function setupKing() {
-  const stage = $("#king-stage");
-  try {
-    const THREE = await import("three");
-    const { GLTFLoader } = await import("three/addons/loaders/GLTFLoader.js");
-    kingScene = new THREE.Scene();
-    kingCamera = new THREE.PerspectiveCamera(35, window.innerWidth / window.innerHeight, 0.1, 100);
-    kingCamera.position.set(0, 0.55, 5.2);
-
-    kingRenderer = new THREE.WebGLRenderer({ antialias: true, alpha: true, powerPreference: "high-performance" });
-    kingRenderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-    kingRenderer.setSize(window.innerWidth, window.innerHeight);
-    kingRenderer.toneMapping = THREE.ACESFilmicToneMapping;
-    kingRenderer.toneMappingExposure = 1.35;
-    stage.prepend(kingRenderer.domElement);
-
-    const key = new THREE.SpotLight(0xffdfa0, 92, 12, 0.45, 0.62, 0.8);
-    key.position.set(1.6, 4, 3.3);
-    const rim = new THREE.PointLight(0xd79b32, 10, 7);
-    rim.position.set(-2.4, 1.4, 2.2);
-    const fill = new THREE.HemisphereLight(0xffe8b0, 0x090604, 1.7);
-    kingScene.add(key, rim, fill);
-
-    const loader = new GLTFLoader();
-    const gltf = await loader.loadAsync("chess_piece_king.glb");
-    kingObject = gltf.scene;
-    kingObject.traverse((child) => {
-      if (child.isMesh) {
-        child.castShadow = true;
-        child.material = new THREE.MeshPhysicalMaterial({
-          color: 0xe1aa3e,
-          metalness: 1,
-          roughness: 0.18,
-          clearcoat: 1,
-          clearcoatRoughness: 0.08,
-          envMapIntensity: 1.6
-        });
-      }
-    });
-    const box = new THREE.Box3().setFromObject(kingObject);
-    const size = box.getSize(new THREE.Vector3());
-    const center = box.getCenter(new THREE.Vector3());
-    kingObject.position.sub(center);
-    const scale = 2.45 / Math.max(size.x, size.y, size.z);
-    kingObject.scale.setScalar(scale);
-    kingObject.position.y = -0.85;
-    kingScene.add(kingObject);
-    $(".king-fallback").style.display = "none";
-
-    function resize() {
-      kingCamera.aspect = window.innerWidth / window.innerHeight;
-      kingCamera.updateProjectionMatrix();
-      kingRenderer.setSize(window.innerWidth, window.innerHeight);
-    }
-
-    function animate() {
-      if (kingObject) {
-        kingObject.rotation.y += 0.005;
-        kingObject.rotation.x = Math.sin(performance.now() * 0.00055) * 0.035;
-      }
-      kingRenderer.render(kingScene, kingCamera);
-      requestAnimationFrame(animate);
-    }
-
-    window.addEventListener("resize", resize, { passive: true });
-    resize();
-    animate();
-  } catch (error) {
-    console.warn("3D king fallback active", error);
-  }
-}
-
-window.setTimeout(setupKing, 700);
-
 function setupMusic() {
   const audio = $("#bg-music");
   const toggle = $("#music-toggle");
@@ -288,10 +207,12 @@ setupHeroVideo();
 function setupIntro() {
   const enter = $("#enter-btn");
   const intro = $("#intro");
-  const openSite = async () => {
-    if (intro.classList.contains("is-open")) return;
-    intro.classList.add("is-open");
-    await music.play();
+  const logoVideo = $("#intro-logo-video");
+  let closing = false;
+
+  const closeIntro = () => {
+    if (closing) return;
+    closing = true;
 
     const timeline = window.gsap
       ? gsap.timeline()
@@ -310,7 +231,6 @@ function setupIntro() {
     if (window.gsap) {
       timeline
         .to(".intro__copy", { y: -34, opacity: 0, duration: 0.85, ease: "power3.inOut" })
-        .to("#king-stage", { y: "-34vh", scale: 1.28, filter: "brightness(1.8)", duration: 1.35, ease: "power4.inOut" }, "-=0.35")
         .to(".intro", { opacity: 0, duration: 1.1, ease: "power2.inOut" }, "-=0.2")
         .call(() => {
           document.body.classList.remove("is-locked");
@@ -328,6 +248,35 @@ function setupIntro() {
         revealVisible();
       }, 1000);
     }
+  };
+
+  const openSite = async () => {
+    if (intro.classList.contains("is-open")) return;
+    intro.classList.add("is-open", "is-logo-expanding");
+    await music.play();
+
+    window.setTimeout(async () => {
+      if (!logoVideo) {
+        closeIntro();
+        return;
+      }
+
+      intro.classList.add("is-playing-logo");
+      logoVideo.loop = false;
+      logoVideo.currentTime = 0;
+      logoVideo.addEventListener("ended", closeIntro, { once: true });
+
+      try {
+        await logoVideo.play();
+      } catch {
+        closeIntro();
+        return;
+      }
+
+      // Keep the invitation reachable if a browser does not fire the ended event.
+      const duration = Number.isFinite(logoVideo.duration) ? logoVideo.duration * 1000 + 700 : 12000;
+      window.setTimeout(closeIntro, duration);
+    }, 900);
   };
 
   enter.addEventListener("click", openSite);
@@ -436,11 +385,9 @@ function setupScratchSeal() {
     ctx.arc(0, 0, Math.min(width, height) * 0.24, 0, Math.PI * 2);
     ctx.stroke();
     ctx.fillStyle = "#fff0bd";
-    ctx.font = `${Math.max(54, width * 0.18)}px Georgia`;
     ctx.textAlign = "center";
     ctx.textBaseline = "middle";
-    ctx.fillText("♛", 0, -8);
-    ctx.font = "700 12px Inter, sans-serif";
+    ctx.font = "700 12px Cinzel, Georgia, serif";
     ctx.letterSpacing = "2px";
     ctx.fillText("SCRATCH THE ROYAL SEAL", 0, Math.min(width, height) * 0.21);
     ctx.restore();
